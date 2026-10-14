@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SURVIVOR ARCHIVE // 행동누가기록</title>
+
+    <!-- 파비콘 등록 -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- 폰트 불러오기 -->
     <link
       href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+KR:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
     <style>
       :root {
         --bg-dark: #0a0c0f;
@@ -224,9 +230,8 @@
     </div>
 
     <script>
-      // ⚙️ 여기에 Apps Script 웹앱 URL을 붙여넣으세요!
-      const GAS_WEB_APP_URL =
-        'https://script.google.com/macros/s/AKfycbyZVQy7ncDQlvzJgEFEZ2SrW4YBDGHMN_nRHl4FEiWnmH3Z0KnFg0zD7j9dcYNgJY9eQw/exec';
+      // ⚙️ 여기에 Apps Script 웹앱 URL을 꼭 붙여넣어 주세요!
+      const GAS_WEB_APP_URL = '여기에_배포된_웹앱_URL을_넣으세요';
 
       const studentSelect = document.getElementById('studentSelect');
       const recordInput = document.getElementById('recordInput');
@@ -291,13 +296,12 @@
             record: recordText,
           };
 
-          // 버튼 잠금
+          // 버튼 잠금 및 안내
           submitBtn.disabled = true;
           submitBtn.textContent = '전송 중... [UPLOADING]';
           log('중앙 서버로 데이터를 전송하고 있습니다...', '');
 
           try {
-            // GAS와의 CORS 문제를 피하기 위해 text/plain 포맷으로 송신
             const res = await fetch(GAS_WEB_APP_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'text/plain;charset=utf-8' },
